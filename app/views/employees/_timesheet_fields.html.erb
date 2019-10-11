@@ -1,0 +1,11 @@
+<div class="nested-fields">
+	<%= f.label :comments %>
+  <%= f.text_field :comments %><br/>
+  <%= f.hidden_field :employee_id %>
+  <%= f.collection_select :project_id, Project.all, :id, :name %><br/>
+  <%= f.label :hours %>
+  <%= f.text_field :hours %><br/>
+  <%= f.check_box :_destroy %>
+
+  <%= link_to_remove_association "remove address", f %>
+</div>

@@ -1,0 +1,31 @@
+<%= form_for @employee , :url => employee_path(@employee) do |form| %>
+  <% if employee.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(employee.errors.count, "error") %> prohibited this employee from being saved:</h2>
+      <ul>
+      <% employee.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div>
+    <%#= form.text_field :name %>
+    <%#= form.label :role %>
+    <%#= form.text_field :role %><br/>
+  </div>
+  <div style= "margin-top: 5%">
+   <span>********Timesheet records********* </span>
+    <div class="row timesheets">
+      <%= form.fields_for :timesheets do |t_sheet| %>
+        <%= render 'timesheet_fields', f: t_sheet %>
+      <% end %>
+    </div><br />
+    <div class="row">
+      <%= link_to_add_association 'Add More timesheets', form, :timesheets %>
+    </div><br />
+  </div>  
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
